@@ -3,6 +3,10 @@ import time
 import sys
 import datetime
 
+# Function to 
+
+
+
 # Function to display the current time
 def display_current_time():
     now = datetime.datetime.now()
