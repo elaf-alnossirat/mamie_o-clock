@@ -5,7 +5,7 @@ import datetime
 
 # Function to display the current system time dynamically
 def display_current_time():
-    print("\nCurrent system time:")
+    print("\nCurrent time:")
     while True:
         now = datetime.datetime.now()
         print(now.strftime("%H:%M:%S"), end="\r")
@@ -98,13 +98,13 @@ def ask_to_reset_alarm():
 
 
 # Main program flow
-print("Welcome to the Clock Program!")
+print(" Hello Mammie Welcome to the Clock Program!")
 
 # Step 1: Show the current system time dynamically
 try:
     display_current_time()
 except KeyboardInterrupt:
-    print("\nYou interrupted the system time display.")
+    print("\nYou interrupted the time display.")
     # Ask the user if they want to reset the time or quit
     if ask_to_reset_or_quit():
         # Step 2: Ask the user to reset the time manually
