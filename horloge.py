@@ -1,11 +1,10 @@
 import time
-import sys
 import datetime
 
 
-# Function to display the current system time dynamically
+# Function to display the current time dynamically
 def display_current_time():
-    print("\nCurrent system time:")
+    print("\nCurrent time:")
     while True:
         now = datetime.datetime.now()
         print(now.strftime("%H:%M:%S"), end="\r")
@@ -49,8 +48,8 @@ def reset_time():
 
 
 # Function to set and check the alarm
-def set_and_check_alarm(alarm_hour, alarm_minute, alarm_second, hour, minute, second):
-    print("\nClock is running:")
+def set_and_check_alarm(hour, minute, second, alarm_hour, alarm_minute, alarm_second):
+    
     while True:
         print(f"{hour:02}:{minute:02}:{second:02}", end="\r")
         time.sleep(1)
@@ -71,31 +70,67 @@ def set_and_check_alarm(alarm_hour, alarm_minute, alarm_second, hour, minute, se
             break
 
 
-# Main program flow
-print("Welcome to the Clock Program!")
+# Menu function
+def menu(): 
+    print("\nMenu:")
+    print("1. Show the current time")
+    print("2. Reset the time manually")
+    print("3. Set an alarm")
+    print("4. Exit")
+    choice = input("Enter your choice: ")
+    return choice
 
-# Step 1: Show the current system time dynamically
-try:
-    display_current_time()
-except KeyboardInterrupt:
-    print("\nDo you want to reset the time? (Press 'Ctrl+C' to continue)\n")
 
-# Step 2: Ask the user to reset the time manually
-hour, minute, second = reset_time()
 
-try:
-    # Display reset time dynamically
-    display_reset_time(hour, minute, second)
-except KeyboardInterrupt:
-    print("\nNow, let's set the alarm:")
+hour, minute, second = None, None, None  # Initialize reset time variables
 
-# Step 3: Set the alarm
-alarm_hour = int(input("Enter alarm hour (0-23): "))
-alarm_minute = int(input("Enter alarm minutes (0-59): "))
-alarm_second = int(input("Enter alarm seconds (0-59): "))
+while True:
+    choice = menu()
+    if choice == "1":
+        # Show the current system time dynamically
+        try:
+            display_current_time()
+        except KeyboardInterrupt:
+            print("\nExiting current time display...")
+    elif choice == "2":
+        # Reset the time manually
+        hour, minute, second = reset_time()
+        try:
+            display_reset_time(hour, minute, second)
+        except KeyboardInterrupt:
+            print("\nExiting reset time display...")
+    elif choice == "3":
+        # Set the alarm
+        if hour is None or minute is None or second is None:
+            # If the time has not been reset, use the current time
+            now = datetime.datetime.now()
+            hour, minute, second = now.hour, now.minute, now.second
 
-# Step 4: Run the clock and check the alarm
-try:
-    set_and_check_alarm(alarm_hour, alarm_minute, alarm_second, hour, minute, second)
-except KeyboardInterrupt:
-    print("\nProgram stopped.")
+        print("\nSet the alarm:")
+        try:
+            alarm_hour = int(input("Enter alarm hour (0-23): "))
+            alarm_minute = int(input("Enter alarm minutes (0-59): "))
+            alarm_second = int(input("Enter alarm seconds (0-59): "))
+
+            # Run the clock and check the alarm
+            set_and_check_alarm(hour, minute, second, alarm_hour, alarm_minute, alarm_second)
+        except ValueError:
+            print("Invalid input. Please enter numeric values.")
+        except KeyboardInterrupt:
+            print("\nExiting alarm check...")
+    elif choice == "4":
+        print("\nExiting program. Goodbye!")
+        break
+    else:
+        print("\nInvalid choice. Please try again.")
+
+
+
+
+
+
+
+
+
+
+
