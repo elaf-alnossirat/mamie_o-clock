@@ -1,7 +1,6 @@
 import time
 import datetime
 
-
 # Function to display the current time dynamically
 def display_current_time():
     print("\nCurrent time:")
@@ -9,7 +8,6 @@ def display_current_time():
         now = datetime.datetime.now()
         print(now.strftime("%H:%M:%S"), end="\r")
         time.sleep(1)
-
 
 # Function to display and update the manually reset time dynamically
 def display_reset_time(hour, minute, second):
@@ -28,7 +26,6 @@ def display_reset_time(hour, minute, second):
         if hour == 24:
             hour = 0
 
-
 # Function to reset the time manually
 def reset_time():
     print("\nReset the time manually:")
@@ -45,7 +42,6 @@ def reset_time():
     except ValueError:
         print("Please enter valid numeric values.")
         return reset_time()  # Retry on invalid input
-
 
 # Function to set and check the alarm
 def set_and_check_alarm(hour, minute, second, alarm_hour, alarm_minute, alarm_second):
@@ -69,7 +65,6 @@ def set_and_check_alarm(hour, minute, second, alarm_hour, alarm_minute, alarm_se
             print("\n⏰ Playing alarm! Time is up! ⏰")
             break
 
-
 # Menu function
 def menu(): 
     print("\nMenu:")
@@ -79,8 +74,6 @@ def menu():
     print("4. Exit")
     choice = input("Enter your choice: ")
     return choice
-
-
 
 hour, minute, second = None, None, None  # Initialize reset time variables
 
